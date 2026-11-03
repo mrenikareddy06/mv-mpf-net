@@ -33,13 +33,16 @@ locally defined demo data using deterministic calculations.
 
 | Action | Where |
 |---|---|
+| Launch 9-step Interactive Tour | Topbar "✨ Guided Tour" or press 'T' |
+| Open Presenter Defense Script & Panel Q&A | Topbar "📋 Defense Script" |
 | Switch forgery scenarios (all authentic / one fake / multi fake) | Section B — Camera Analysis |
 | Click individual camera views to inspect branch scores | Section B |
 | Drag sliders to manually adjust evidence scores | Section C — Evidence Streams |
 | Switch between E1, E2, E3a, E3b explanation tabs | Section C |
 | Switch fusion methods (Mean / Max / Dempster–Shafer) | Section D — Fusion |
-| Watch verdict update live | Topbar + Section E |
-| Select held-out forgery family for zero-shot diagram | Section F |
+| Export Official Forensic Audit Certificate (PDF) | Section E — Final Detection Report |
+| Compare with single-view baselines (XceptionNet/FTCN) | Section E — Benchmark Table |
+| Select held-out forgery family for zero-shot protocol | Section F — Zero-Shot Protocol |
 | Reset everything | Topbar ↺ button |
 
 ---
