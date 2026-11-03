@@ -198,3 +198,4 @@ export default function ForensicReportModal({ isOpen, onClose, cameras, scenario
     </div>
   );
 }
+

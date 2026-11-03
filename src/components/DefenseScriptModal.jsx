@@ -193,3 +193,4 @@ export default function DefenseScriptModal({ isOpen, onClose }) {
     </div>
   );
 }
+
