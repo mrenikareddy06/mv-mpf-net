@@ -7,6 +7,7 @@ import FusionSection from './components/FusionSection.jsx';
 import ReportSection from './components/ReportSection.jsx';
 import ZeroShotSection from './components/ZeroShotSection.jsx';
 import Tour from './components/Tour.jsx';
+import DefenseScriptModal from './components/DefenseScriptModal.jsx';
 
 const NAV_ITEMS = [
   { id: 'overview', label: 'Overview', icon: '⬡', eyebrow: 'A' },
@@ -116,6 +117,7 @@ export default function App() {
   const [fusionMethod, setFusionMethod] = useState('dempster');
   const [activeSection, setActiveSection] = useState('overview');
   const [isTourOpen, setIsTourOpen] = useState(false);
+  const [isScriptOpen, setIsScriptOpen] = useState(false);
 
   const mainRef = useRef(null);
 
@@ -210,6 +212,17 @@ export default function App() {
           <span className="tour-badge-step">9 Steps</span>
         </button>
 
+        {/* Defense Script & Panel Cheat Sheet */}
+        <button
+          className="btn btn-secondary btn-sm"
+          onClick={() => setIsScriptOpen(true)}
+          title="Open presenter cheat sheet & panel Q&A guide"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 600, padding: '6px 12px', borderRadius: 8 }}
+        >
+          <span>📋</span>
+          <span>Defense Script</span>
+        </button>
+
         <button className="reset-btn" onClick={handleReset} title="Reset prototype to initial state">
           ↺ Reset
         </button>
@@ -289,6 +302,9 @@ export default function App() {
 
       {/* Guided Walkthrough Tour Overlay */}
       <Tour isOpen={isTourOpen} onClose={() => setIsTourOpen(false)} />
+
+      {/* Defense Script & Cheat Sheet Modal */}
+      <DefenseScriptModal isOpen={isScriptOpen} onClose={() => setIsScriptOpen(false)} />
     </div>
   );
 }

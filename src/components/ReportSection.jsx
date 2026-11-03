@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { computeFusion, SCENARIOS } from '../data/demoData.js';
 import { VerdictRing } from './Charts.jsx';
+import BenchmarkTable from './BenchmarkTable.jsx';
+import ForensicReportModal from './ForensicReportModal.jsx';
 
 function TopContributor({ branchScores }) {
   const entries = Object.entries(branchScores).sort((a, b) => b[1] - a[1]);
@@ -14,6 +17,7 @@ function TopContributor({ branchScores }) {
 }
 
 export default function ReportSection({ cameras, scenarioId, fusionMethod }) {
+  const [isCertOpen, setIsCertOpen] = useState(false);
   const result = computeFusion(cameras, fusionMethod);
   const scenario = SCENARIOS[scenarioId];
   const isFake = result.fakeProbability >= 0.5;
@@ -82,6 +86,15 @@ export default function ReportSection({ cameras, scenarioId, fusionMethod }) {
             <div style={{ marginBottom: 'var(--space-4)' }}>
               <TopContributor branchScores={result.branchScores} />
             </div>
+
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => setIsCertOpen(true)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 600, padding: '7px 14px' }}
+            >
+              <span>📄</span>
+              <span>Export Forensic Audit Certificate</span>
+            </button>
           </div>
         </div>
       </div>
@@ -124,6 +137,21 @@ export default function ReportSection({ cameras, scenarioId, fusionMethod }) {
           })}
         </div>
       </div>
+
+      {/* Benchmark comparison against existing single-view SOTA */}
+      <div className="mt-8">
+        <BenchmarkTable />
+      </div>
+
+      {/* Forensic Audit Certificate Modal */}
+      <ForensicReportModal
+        isOpen={isCertOpen}
+        onClose={() => setIsCertOpen(false)}
+        cameras={cameras}
+        scenarioId={scenarioId}
+        fusionMethod={fusionMethod}
+        result={result}
+      />
     </section>
   );
 }
